@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="EasyRef: Omni-Generalized Group Image Reference for Diffusion Models via Multimodal LLM">
+  <meta name="keywords" content="EasyRef">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> EasyRef: Omni-Generalized Group Image Reference for Diffusion Models via Multimodal LLM</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="stylesheet" href="./static/css/leaderboard.css">
+
+  <!-- <link href="https://unpkg.com/tabulator-tables@5.5.2/dist/css/tabulator_bulma.min.css" rel="stylesheet">
+  <script type="text/javascript" src="https://unpkg.com/tabulator-tables@5.5.2/dist/js/tabulator.min.js"></script> -->
+  <script type="text/javascript" src="static/js/sort-table.js" defer></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/explorer-index.js"></script>
+  <script src="./static/js/question_card.js"></script>
+
+  <script src="./static/js/leaderboard_testmini.js"></script>  
+  <script src="./data/results/output_folders.js" defer></script>
+  <script src="./data/results/model_scores.js" defer></script>
+
+  <script src="./visualizer/data/data_public.js" defer></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <!-- <a class="navbar-item" href="https://keunhong.com">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a> -->
+      <!-- @PAN TODO: consider adding links? -->
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://github.com/TempleX98/MoVA">
+            <b>MoVA</b> <p style="font-size:18px; display: inline; margin-left: 5px;">🔥</p>
+          </a>
+          <a class="navbar-item" href="https://arxiv.org/abs/2406.11831">
+            <b>LI-DiT</b> <p style="font-size:18px; display: inline; margin-left: 5px;">🔥</p>
+          </a>
+          <a class="navbar-item" href="https://caraj7.github.io/comat">
+            <b>CoMat</b> <p style="font-size:18px; display: inline; margin-left: 5px;">🔥</p>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title is-bold">
+            <!-- <img src="static/images/logo.png" style="width:1em;vertical-align: middle" alt="Logo"/> -->
+            <span class="mathvista" style="vertical-align: middle">EasyRef</span>
+            </h1>
+          <h2 class="subtitle is-3 publication-subtitle">
+            Omni-Generalized Group Image Reference for Diffusion Models via Multimodal LLM
+            <!-- <br> -->
+            <!-- with GPT-4V, Bard, and Other Large Multimodal Models -->
+          </h2>
+        
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=vls0YhoAAAAJ">Zhuofan Zong</a><sup style="color:#6fbf73;">1</sup><sup style="color:#000000;">,</sup><sup style="color:#ffac33;">2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://caraj7.github.io">Dongzhi Jiang</a><sup style="color:#6fbf73;">1</sup>,
+            </span>
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?user=rcWQWCoAAAAJ">Bingqi Ma</a><sup style="color:#ffac33">2</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://songguanglu.github.io/">Guanglu Song</a><sup style="color:#ffac33">2</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://hao-shao.com/">Hao Shao</a><sup style="color:#6fbf73">1</sup>,
+              <!-- </span> -->
+              <span class="author-block">
+                <a href="http://www.shendazhong.com/">Dazhong Shen</a><sup style="color:#FF69B4">3</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://liuyu.us/">Yu Liu</a><sup style="color:#ffac33">2</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://www.ee.cuhk.edu.hk/~hsli/">Hongsheng Li</a><sup style="color:#6fbf73;">1</sup><sup style="color:#000000;">,</sup><sup style="color:#FF69B4;">3</sup>
+              </span>
+          </div>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup style="color:#6fbf73;">1</sup>CUHK MMLab,</span>
+            <span class="author-block"><sup style="color:#ffac33">2</sup>SenseTime Research,</span>
+            <span class="author-block"><sup style="color:#FF69B4">3</sup>Shanghai AI Laboratory</span><br>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <!-- @PAN TODO: change links -->
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                <!-- <a href="https://arxiv.org/abs/2409.12959"
+                   class="external-link button is-normal is-rounded is-dark"> -->
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://github.com/TempleX98/EasyRef"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href="https://huggingface.co/zongzhuofan/EasyRef"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <!-- <i class="far fa-images"></i> -->
+                      <p style="font-size:18px">🤗</p>
+                      <!-- 🔗 -->
+                  </span>
+                  <span>Model</span>
+                </a>
+              </span> 
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href="https://huggingface.co/datasets/zongzhuofan/MRBench"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <img src="static/images/database.png" alt="dataset icon" style="width: 16px; height: 16px;">
+                    </span>
+                  <span>Dataset (coming soon)</span>
+                </a>
+              </span> 
+              <!-- Visualization Link. -->
+              <span class="link-block">
+                <a href="https://huggingface.co/spaces/zongzhuofan/EasyRef"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <p style="font-size:18px">🔮</p>
+                  </span>
+                  <span>Demo</span>
+                </a>
+              </span>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="content has-text-centered">
+      <img src="static/images/easyref_webpage/teaser_page_1.png" alt="EasyRef is capable of modeling the consistent visual elements of various input reference images with a single generalist multimodal LLM in a zero-shot setting." width="80%"/>
+    </div>
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Introduction</h2>
+        <div class="content has-text-justified">
+          <p>
+            <p>
+              Significant achievements in personalization of diffusion models have been witnessed.
+              Conventional tuning-free methods mostly encode multiple reference images by averaging their image embeddings as the injection condition, but such an image-independent operation cannot perform interaction among images to capture consistent visual elements within multiple references.
+              Although the tuning-based Low-Rank Adaptation (LoRA) can effectively extract consistent elements within multiple images through the training process, it necessitates specific finetuning for each distinct image group.
+            </p>
+            <p>
+              This paper introduces EasyRef, a novel plug-and-play adaptation method that enables diffusion models to be conditioned on multiple reference images and the text prompt.
+              To effectively exploit consistent visual elements within multiple images, we leverage the multi-image comprehension and instruction-following capabilities of the multimodal large language model (MLLM), prompting it to capture consistent visual elements based on the instruction.
+              Besides, injecting the MLLM's representations into the diffusion process through adapters can easily generalize to unseen domains, mining the consistent visual elements within unseen data.
+              To mitigate computational costs and enhance fine-grained detail preservation, we introduce an efficient reference aggregation strategy and a progressive training scheme. 
+              Finally, we introduce MRBench, a new multi-reference image generation benchmark.
+            </p>
+            <p>
+              Experimental results demonstrate EasyRef surpasses both tuning-free methods like IP-Adapter and tuning-based methods like LoRA, achieving superior aesthetic quality and robust zero-shot generalization across diverse domains.
+            </p>
+          </p> 
+        </div>
+      </div>
+    </div>
+</div>
+</section>
+
+
+            
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+        <h2 class="title is-3">Method</h2>
+        <div class="content has-text-justified">
+          <div class="content has-text-centered">
+            <img src="static/images/easyref_webpage/framework-2_page_1.png" alt="Overview of EasyRef with SDXL." width="80%"/>
+            <p> Overview of EasyRef with SDXL.</span>
+          </div>
+          <p>
+            EasyRef comprises four key components: (1) a pretrained diffusion model for conditional image generation, (2) a pretrained multimodal large language model (MLLM) for encoding a set of reference images and the text prompt, (3) a condition projector that maps the representations from the MLLM into the latent space of diffusion model, and (4) trainable adapters for integrating image conditioning embedding into the diffusion process. 
+          </p>
+          <p>
+            We propose to leverage the multi-image comprehension and instruction-following capabilities of the MLLM to encode multi-reference inputs and the text prompt based on the instruction.
+            The MLLM consists of a large language model (LLM) and a vision encoder capable of handling images with arbitrary resolutions.
+            The input image is initially converted into visual tokens with the vision encoder.
+            Then we employ an instruction and integrate all images into the instruction, which explicitly encourages the MLLM to focus on the crucial and common contents within the reference images.
+          </p>
+          <p>
+            Increasing the number of reference images inevitably raises the number of visual tokens in the LLM. 
+            We propose to encapsulate the reference representations into 64 learnable reference tokens in the LLM to achieve efficient inference.
+            However, all parameters of LLM must be trained to interpret these newly added tokens. 
+            To enhance training efficiency, we append reference tokens to the context sequence at the final layer of LLM, keeping all previous LLM layers frozen during pretraining.
+            The final image conditions are injected into the pretrained diffusion model through cross-attention adapters.
+          </p>
+      </div> 
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- RESULTS SECTION -->
+<section class="hero is-light is-small">
+  <div class="hero-body has-text-centered">
+    <h1 class="title is-1 mathvista">Experiment Results</h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+
+    <div class="columns is-centered m-6">
+      <div class="column is-full has-text-centered content">
+        <h2 class="title is-3">Comparisons in single-reference scenarios</h2>
+        <div class="content has-text-centered">
+          <img src="static/images/easyref_webpage/single_ref_page_1.png" alt="data-composition" style="max-width: 100%;"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="columns is-centered m-6">
+      <div class="column is-full has-text-centered content">
+        <h2 class="title is-3">Comparisons in multi-reference scenarios</h2>
+        <div class="content has-text-centered">
+          <img src="static/images/easyref_webpage/qualitative-2_page_1.png" alt="data-composition" style="max-width: 100%;"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="columns is-centered m-6">
+      <div class="column is-full has-text-centered content">
+        <h2 class="title is-3">Compatibility with ControlNet</h2>
+        <div class="content has-text-centered">
+          <img src="static/images/easyref_webpage/controlnet_page_1.png" alt="data-composition" style="max-width: 100%;"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="columns is-centered m-6">
+      <div class="column is-full has-text-centered content">
+        <h2 class="title is-3">Visualization Examples</h2>
+        <div id="results-carousel" class="carousel results-carousel">
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/easyref_webpage/identity_page_1.png" alt="" width="80%"/>
+              <p>More generated samples of identity preservation with EasyRef in a <b>zero-shot setting</b>. We use the face images of celebrities in this experiment.</p>
+            </div>
+          </div>
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/easyref_webpage/character_page_1.png" alt="" width="80%"/>
+              <p>More generated samples of character consistency with EasyRef in a <b>zero-shot setting</b>.</p>
+            </div>
+          </div>
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/easyref_webpage/style_page_1.png" alt="" width="80%"/>
+              <p>More generated samples of style consistency with EasyRef in a <b>zero-shot setting</b>.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="section" id="org-banners" style="display:flex">
+    <a href="https://www.cuhk.edu.hk/chinese/index.html" target="_blank" rel="external">
+        <img class="center-block org-banner" src="static/images/cuhk.png">
+    </a>
+  <div class="section" id="org-banners" style="display:flex">
+      <a href="https://www.sensetime.com/cn" target="_blank" rel="external">
+          <img class="center-block org-banner" src="static/images/sensetime.png">
+      </a>
+  <div class="section" id="org-banners" style="display:flex">
+    <a href="https://www.shlab.org.cn/" target="_blank" rel="external">
+        <img class="center-block org-banner" src="static/images/shlab.png">
+    </a>
+  </div>
+</section>
+
+
+<footer class="footer">
+    <div class="content has-text-centered">
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is adapted from <a href="https://mathverse-cuhk.github.io/">MathVerse</a> and <a href="https://nerfies.github.io/">Nerfies</a>, licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+</footer>
+
+</body>
+</html>
